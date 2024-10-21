@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Copy, Eye, EyeOff, X } from 'lucide-react';
 import Notification from './Notification';
 
+
+// Session Modals
 const SessionModal = ({ isOpen, onClose, onSubmit, mode, sessionDetails }) => {
     const [sessionId, setSessionId] = useState('');
     const [username, setUsername] = useState('');

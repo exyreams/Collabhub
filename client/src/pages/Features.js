@@ -9,6 +9,7 @@ import {
     FaUsers,
 } from 'react-icons/fa';
 
+// Feature data with titles, descriptions, and icons
 const features = [
     {
         id: 1,
@@ -59,9 +60,9 @@ export default function Features({ onJoinSession }) {
                     <div className="mx-auto max-w-7xl px-4 lg:px-8 sm:px-6">
                         <motion.div
                             className="text-center"
-                            initial={{ opacity: 0, y: -20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5 }}
+                            initial={{ opacity: 0, y: -20 }} // Initial animation state
+                            animate={{ opacity: 1, y: 0 }} // Animation to end state
+                            transition={{ duration: 0.5 }} // Animation duration
                         >
                             <h1 className="mb-6 text-5xl font-extrabold md:text-7xl">
                 <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
@@ -79,20 +80,20 @@ export default function Features({ onJoinSession }) {
                                 <motion.div
                                     key={feature.id}
                                     className="glassmorphism relative overflow-hidden rounded-xl p-8"
-                                    initial={{ opacity: 0, y: 50 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                                    initial={{ opacity: 0, y: 50 }} // Initial animation state for features
+                                    animate={{ opacity: 1, y: 0 }} // Animation to end state for features
+                                    transition={{ duration: 0.5, delay: index * 0.1 }} // Delay for staggered animation
                                 >
                                     <div className="mb-6 flex justify-center text-indigo-400">
-                                        <feature.icon className="text-6xl" />
+                                        <feature.icon className="text-6xl" /> {/* Render feature icon */}
                                     </div>
                                     <h3 className="mb-4 text-center text-2xl font-semibold">
-                                        {feature.title}
+                                        {feature.title} {/* Feature title */}
                                     </h3>
                                     <p className="text-center text-gray-300">
-                                        {feature.description}
+                                        {feature.description} {/* Feature description */}
                                     </p>
-                                    <div className="absolute -bottom-10 -right-10 h-40 w-40 rounded-full bg-indigo-500 opacity-10" />
+                                    <div className="absolute -bottom-10 -right-10 h-40 w-40 rounded-full bg-indigo-500 opacity-10" /> {/* Decorative background circle */}
                                 </motion.div>
                             ))}
                         </div>
@@ -110,11 +111,11 @@ export default function Features({ onJoinSession }) {
                                 productivity and creativity.
                             </p>
                             <motion.div
-                                whileHover={{ scale: 1.05 }}
-                                transition={{ type: 'spring', stiffness: 300 }}
+                                whileHover={{ scale: 1.05 }} // Scale effect on hover
+                                transition={{ type: 'spring', stiffness: 300 }} // Spring animation
                             >
                                 <button
-                                    onClick={onJoinSession}
+                                    onClick={onJoinSession} // Function to handle joining a session
                                     className="glassmorphism-button inline-block rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-12 py-4 text-lg transition-all duration-300 hover:from-blue-700 hover:to-indigo-700"
                                 >
                                     Get Started Now

@@ -10,6 +10,7 @@ import {
 import { Loader, LogOut } from 'lucide-react';
 import logo from '../assets/logo.png';
 
+// Navbar_Header Component
 export default function Navbar({
                                    onJoinSession,
                                    onCreateSession,

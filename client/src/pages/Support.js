@@ -82,6 +82,7 @@ export default function CustomerSupport() {
                     </div>
                 </section>
 
+                {/*Contact Us Section*/}
                 <section className="py-20">
                     <div className="mx-auto max-w-7xl px-4 lg:px-8 sm:px-6">
                         <div className="text-center">

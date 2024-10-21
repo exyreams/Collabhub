@@ -20,11 +20,12 @@ import synergysolutions from '../assets/synergysolutions.png';
 import technova from '../assets/technova.png';
 
 const features = [
+    // Array with mock data explaining different features
     {
-        id: 1,
-        title: 'Real-time Drawing',
-        description: 'Collaborate on visual ideas with our interactive whiteboard.',
-        icon: FaPencilAlt,
+        id: 1, // Unique identifier for the feature
+        title: 'Real-time Drawing', // Feature title
+        description: 'Collaborate on visual ideas with our interactive whiteboard.', // Brief description of the feature
+        icon: FaPencilAlt, // Icon representing the feature
     },
     {
         id: 2,
@@ -41,7 +42,9 @@ const features = [
     },
 ];
 
+
 const companies = [
+    // Array with mock data with different company logos
     { id: 1, name: 'TechNova', logo: technova },
     { id: 2, name: 'Quantum Systems', logo: quantsystems },
     { id: 3, name: 'Nexus Corp', logo: nexuscorp },
@@ -51,6 +54,7 @@ const companies = [
 ];
 
 const testimonials = [
+    // Array with mock data explaining different user reviews
     {
         id: 1,
         name: 'John Doe',
@@ -96,6 +100,7 @@ const testimonials = [
 ];
 
 const faqs = [
+    // Array with mock data accordion/FAQ questions
     {
         id: 1,
         question: 'Is CollabHub really free for individuals and students?',
@@ -135,6 +140,7 @@ const faqs = [
 ];
 
 const innovationSteps = [
+    // Array with mock data for an section of page
     { icon: FaRocket, text: 'Launch Your Ideas' },
     { icon: FaPuzzlePiece, text: 'Collaborate Seamlessly' },
     { icon: FaLightbulb, text: 'Innovate Together' },
@@ -147,13 +153,14 @@ export default function Home({ onJoinSession }) {
     return (
         <div className="relative min-h-screen text-white">
             <main className="relative">
+                {/*Hero Section*/}
                 <section className="relative overflow-hidden py-20">
                     <div className="relative mx-auto max-w-7xl px-4 lg:px-8 sm:px-6">
                         <motion.div
                             className="text-center"
-                            initial={{ opacity: 0, y: -20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5 }}
+                            initial={{opacity: 0, y: -20}}
+                            animate={{opacity: 1, y: 0}}
+                            transition={{duration: 0.5}}
                         >
                             <h1 className="relative mb-6 text-5xl font-extrabold md:text-7xl">
                 <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
@@ -182,6 +189,7 @@ export default function Home({ onJoinSession }) {
                     </div>
                 </section>
 
+                {/*Companies Section*/}
                 <section className="py-20">
                     <div className="mx-auto max-w-7xl px-4 lg:px-8 sm:px-6">
                         <h2 className="mb-12 text-center text-3xl font-extrabold">
@@ -192,8 +200,8 @@ export default function Home({ onJoinSession }) {
                                 <motion.div
                                     key={company.id}
                                     className="glassmorphism flex items-center justify-center rounded-lg p-4"
-                                    whileHover={{ scale: 1.05 }}
-                                    transition={{ type: 'spring', stiffness: 300 }}
+                                    whileHover={{scale: 1.05}}
+                                    transition={{type: 'spring', stiffness: 300}}
                                 >
                                     <img
                                         src={company.logo}
@@ -207,6 +215,7 @@ export default function Home({ onJoinSession }) {
                     </div>
                 </section>
 
+                {/*Features Section*/}
                 <section id="features" className="py-20">
                     <div className="mx-auto max-w-7xl px-4 lg:px-8 sm:px-6">
                         <h2 className="mb-16 text-center text-4xl font-extrabold">
@@ -217,12 +226,12 @@ export default function Home({ onJoinSession }) {
                                 <motion.div
                                     key={feature.id}
                                     className="glassmorphism relative overflow-hidden rounded-xl p-8"
-                                    initial={{ opacity: 0, y: 50 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.5, delay: index * 0.2 }}
+                                    initial={{opacity: 0, y: 50}}
+                                    animate={{opacity: 1, y: 0}}
+                                    transition={{duration: 0.5, delay: index * 0.2}}
                                 >
                                     <div className="mb-6 flex justify-center text-indigo-400">
-                                        <feature.icon className="text-6xl" />
+                                        <feature.icon className="text-6xl"/>
                                     </div>
                                     <h3 className="mb-4 text-center text-2xl font-semibold">
                                         {feature.title}
@@ -230,13 +239,15 @@ export default function Home({ onJoinSession }) {
                                     <p className="text-center text-gray-300">
                                         {feature.description}
                                     </p>
-                                    <div className="absolute -bottom-10 -right-10 h-40 w-40 rounded-full bg-indigo-500 opacity-10" />
+                                    <div
+                                        className="absolute -bottom-10 -right-10 h-40 w-40 rounded-full bg-indigo-500 opacity-10"/>
                                 </motion.div>
                             ))}
                         </div>
                     </div>
                 </section>
 
+                {/*Testnomial Section*/}
                 <section className="py-20">
                     <div className="mx-auto max-w-7xl px-4 lg:px-8 sm:px-6">
                         <h2 className="mb-16 text-center text-4xl font-extrabold">
@@ -247,13 +258,13 @@ export default function Home({ onJoinSession }) {
                                 <motion.div
                                     key={testimonial.id}
                                     className="glassmorphism rounded-xl p-6"
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    transition={{ duration: 0.5, delay: index * 0.2 }}
+                                    initial={{opacity: 0, scale: 0.9}}
+                                    animate={{opacity: 1, scale: 1}}
+                                    transition={{duration: 0.5, delay: index * 0.2}}
                                 >
                                     <p className="mb-4 text-gray-300">"{testimonial.content}"</p>
                                     <div className="flex items-center">
-                                        <div className="mr-4 h-12 w-12 rounded-full bg-indigo-500" />
+                                        <div className="mr-4 h-12 w-12 rounded-full bg-indigo-500"/>
                                         <div>
                                             <p className="font-semibold">{testimonial.name}</p>
                                             <p className="text-sm text-gray-400">
@@ -267,26 +278,28 @@ export default function Home({ onJoinSession }) {
                     </div>
                 </section>
 
+                {/*CTA Section*/}
                 <section id="innovation-cycle" className="py-20">
                     <div className="mx-auto max-w-7xl px-4 lg:px-8 sm:px-6">
                         <h2 className="mb-16 text-center text-4xl font-extrabold">
-              <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
-                The CollabHub Innovation Cycle
-              </span>
+                          <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
+                            The CollabHub Innovation Cycle
+                          </span>
                         </h2>
                         <div className="relative">
                             <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="animate-spin-slow h-64 w-64 rounded-full border-4 border-dashed border-indigo-500" />
+                                <div
+                                    className="animate-spin-slow h-64 w-64 rounded-full border-4 border-dashed border-indigo-500"/>
                             </div>
                             <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
                                 {innovationSteps.map((step, index) => (
                                     <motion.div
                                         key={index}
                                         className="glassmorphism relative z-10 flex flex-col items-center justify-center rounded-xl p-6"
-                                        whileHover={{ scale: 1.05 }}
-                                        transition={{ type: 'spring', stiffness: 300 }}
+                                        whileHover={{scale: 1.05}}
+                                        transition={{type: 'spring', stiffness: 300}}
                                     >
-                                        <step.icon className="mb-4 text-4xl text-indigo-400" />
+                                        <step.icon className="mb-4 text-4xl text-indigo-400"/>
                                         <p className="text-center font-semibold">{step.text}</p>
                                     </motion.div>
                                 ))}
@@ -303,6 +316,7 @@ export default function Home({ onJoinSession }) {
                     </div>
                 </section>
 
+                {/*Faq Section*/}
                 <section className="py-20">
                     <div className="mx-auto max-w-7xl px-4 lg:px-8 sm:px-6">
                         <h2 className="mb-16 text-center text-4xl font-extrabold">
@@ -313,9 +327,9 @@ export default function Home({ onJoinSession }) {
                                 <motion.div
                                     key={faq.id}
                                     className="glassmorphism overflow-hidden rounded-xl"
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.5 }}
+                                    initial={{opacity: 0, y: 20}}
+                                    animate={{opacity: 1, y: 0}}
+                                    transition={{duration: 0.5}}
                                 >
                                     <button
                                         className="flex w-full items-center justify-between p-4 text-left"
@@ -324,15 +338,15 @@ export default function Home({ onJoinSession }) {
                     <span className="text-xl font-semibold">
                       {faq.question}
                     </span>
-                                        {openFaq === faq.id ? <FaChevronUp /> : <FaChevronDown />}
+                                        {openFaq === faq.id ? <FaChevronUp/> : <FaChevronDown/>}
                                     </button>
                                     <AnimatePresence>
                                         {openFaq === faq.id && (
                                             <motion.div
-                                                initial={{ opacity: 0, height: 0 }}
-                                                animate={{ opacity: 1, height: 'auto' }}
-                                                exit={{ opacity: 0, height: 0 }}
-                                                transition={{ duration: 0.3 }}
+                                                initial={{opacity: 0, height: 0}}
+                                                animate={{opacity: 1, height: 'auto'}}
+                                                exit={{opacity: 0, height: 0}}
+                                                transition={{duration: 0.3}}
                                             >
                                                 <p className="p-4 text-gray-300">{faq.answer}</p>
                                             </motion.div>
@@ -344,22 +358,23 @@ export default function Home({ onJoinSession }) {
                     </div>
                 </section>
 
-                <section className="py-20">
-                    <div className="mx-auto max-w-7xl px-4 text-center lg:px-8 sm:px-6">
-                        <h2 className="mb-8 bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-4xl font-extrabold text-transparent">
+                <section className="py-20"> {/* Section with padding top and bottom */}
+                    <div
+                        className="mx-auto max-w-7xl px-4 text-center lg:px-8 sm:px-6"> {/* Container with max width and padding */}
+                        <h2 className="mb-8 bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-4xl font-extrabold text-transparent"> {/* Main heading with gradient background */}
                             Ready to Transform Your Team's Collaboration?
                         </h2>
-                        <p className="mx-auto mb-12 max-w-3xl text-xl">
+                        <p className="mx-auto mb-12 max-w-3xl text-xl"> {/* Paragraph text */}
                             Join thousands of teams already using CollabHub to boost their
                             productivity and creativity.
                         </p>
-                        <motion.div
-                            whileHover={{ scale: 1.05 }}
-                            transition={{ type: 'spring', stiffness: 300 }}
+                        <motion.div  {/* Div with animation on hover */}
+                                     whileHover={{scale: 1.05}} {/* Hover animation: scale up */}
+                                     transition={{type: 'spring', stiffness: 300}} {/* Spring animation effect */}
                         >
-                            <button
-                                onClick={onJoinSession}
-                                className="glassmorphism-button inline-block rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-12 py-4 text-lg transition-all duration-300 hover:from-blue-700 hover:to-indigo-700"
+                            <button  {/* Button to trigger the join session */}
+                                     onClick={onJoinSession} {/* Function called on click */}
+                                     className="glassmorphism-button inline-block rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-12 py-4 text-lg transition-all duration-300 hover:from-blue-700 hover:to-indigo-700" {/* Button styles with hover effect */}
                             >
                                 Get Started Now
                             </button>

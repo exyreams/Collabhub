@@ -8,6 +8,7 @@ export default function Privacy() {
             <main className="relative">
                 <section className="py-20">
                     <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+                        {/*Hero Section*/}
                         <motion.div
                             className="text-center"
                             initial={{ opacity: 0, y: -20 }}
@@ -15,15 +16,16 @@ export default function Privacy() {
                             transition={{ duration: 0.5 }}
                         >
                             <h1 className="mb-6 text-5xl font-extrabold md:text-7xl">
-                <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
-                  Privacy Policy
-                </span>
+                            <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
+                              Privacy Policy
+                            </span>
                             </h1>
                             <p className="mb-12 text-xl text-gray-300">
                                 Last updated: October 01, 2024
                             </p>
                         </motion.div>
 
+                        {/*Mock Privacy Policy*/}
                         <div className="glassmorphism rounded-xl p-8">
                             <motion.div
                                 initial={{ opacity: 0 }}
@@ -120,7 +122,7 @@ export default function Privacy() {
                         </div>
                     </div>
                 </section>
-
+                {/*Contact Us Section*/}
                 <section className="py-20">
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                         <div className="text-center">

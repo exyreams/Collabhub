@@ -10,6 +10,7 @@ import {
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
+// Array of Mock Security Features
 const securityFeatures = [
     {
         icon: FaShieldAlt,
@@ -53,6 +54,7 @@ export default function Security() {
             <main className="relative">
                 <section className="py-20">
                     <div className="mx-auto max-w-7xl px-4 lg:px-8 sm:px-6">
+                        {/*Hero Section*/}
                         <motion.div
                             className="text-center"
                             initial={{ opacity: 0, y: -20 }}
@@ -60,9 +62,9 @@ export default function Security() {
                             transition={{ duration: 0.5 }}
                         >
                             <h1 className="mb-6 text-5xl font-extrabold md:text-7xl">
-                <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
-                  Your Security is Our Top Priority
-                </span>
+                            <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
+                              Your Security is Our Top Priority
+                            </span>
                             </h1>
                             <p className="mx-auto mb-12 max-w-3xl text-xl text-gray-300 md:text-2xl">
                                 At CollabHub, we implement state-of-the-art security measures to
@@ -94,6 +96,7 @@ export default function Security() {
                     </div>
                 </section>
 
+                {/*Contact Us Section*/}
                 <section className="py-20">
                     <div className="mx-auto max-w-7xl px-4 lg:px-8 sm:px-6">
                         <div className="text-center">

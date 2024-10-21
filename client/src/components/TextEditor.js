@@ -7,44 +7,58 @@ const TextEditor = ({ socket }) => {
     const [typingUsers, setTypingUsers] = useState({});
 
     useEffect(() => {
+        // Ensure that the socket connection exists
         if (!socket) return;
 
+        // Function to handle text updates from other users
         const handleUpdateText = (delta) => {
+            // Check if the editor reference is available
             if (editorRef.current) {
-                const quill = editorRef.current.getEditor();
-                quill.updateContents(delta);
+                const quill = editorRef.current.getEditor(); // Get the Quill editor instance
+                quill.updateContents(delta); // Update the editor's content with the received delta
             }
         };
 
+        // Function to handle user typing events
         const handleUserTyping = ({ username, isTyping }) => {
+            // Update the state of typing users based on the event
             setTypingUsers((prev) => ({
                 ...prev,
-                [username]: isTyping,
+                [username]: isTyping, // Set the typing status for the user
             }));
         };
 
+        // Set up socket listeners for text updates and typing notifications
         socket.on('updateText', handleUpdateText);
         socket.on('userTyping', handleUserTyping);
 
+        // Cleanup function to remove listeners when the component unmounts
         return () => {
-            socket.off('updateText', handleUpdateText);
-            socket.off('userTyping', handleUserTyping);
+            socket.off('updateText', handleUpdateText); // Remove text update listener
+            socket.off('userTyping', handleUserTyping); // Remove user typing listener
         };
-    }, [socket]);
+    }, [socket]); // Re-run the effect if the socket changes
 
     const handleTextChange = (content, delta, source, editor) => {
+        // Check if the change was made by the user
         if (source === 'user' && socket) {
+            // Emit the updated text content to the server
             socket.emit('updateText', delta);
+
+            // Notify the server that the user is currently typing
             socket.emit('userTyping', { isTyping: true });
 
-            // Debounce the typing event
+            // Debounce the typing event to prevent excessive messages
             clearTimeout(editorRef.current.typingTimeout);
             editorRef.current.typingTimeout = setTimeout(() => {
+                // Emit a message indicating that the user has stopped typing
                 socket.emit('userTyping', { isTyping: false });
-            }, 1000);
+            }, 1000); // Set a timeout for 1 second
         }
     };
 
+
+    // Rich Text Editor Toolbar icons
     const modules = {
         toolbar: [
             [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -59,6 +73,7 @@ const TextEditor = ({ socket }) => {
         ],
     };
 
+    // Various Text Styling for Texts
     const formats = [
         'header',
         'font',
@@ -93,6 +108,8 @@ const TextEditor = ({ socket }) => {
                     )}
                 </div>
             </div>
+
+            {/*React Quill Implementation*/}
             <ReactQuill
                 ref={editorRef}
                 theme="snow"

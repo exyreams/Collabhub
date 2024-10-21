@@ -5,69 +5,72 @@ import Chat from '../components/Chat';
 import CanvasKeyboardShortcuts from '../components/CanvasKeyboardShortcuts';
 
 export default function Draw({ socket, sessionInfo, onJoinSession }) {
+    // State variables for active tool, color, and shortcut visibility
     const [activeTool, setActiveTool] = useState('draw');
     const [color, setColor] = useState('#2563eb');
     const [showShortcuts, setShowShortcuts] = useState(false);
-    const canvasRef = useRef(null);
+    const canvasRef = useRef(null); // Ref to access the Canvas component
 
     useEffect(() => {
+        // Function to handle keyboard shortcuts
         const handleKeyDown = (e) => {
-            if (e.ctrlKey || e.metaKey) {
+            if (e.ctrlKey || e.metaKey) { // Check for Ctrl or Command key
                 switch (e.key.toLowerCase()) {
                     case 'z':
-                        e.preventDefault();
+                        e.preventDefault(); // Prevent default behavior
                         if (e.shiftKey) {
-                            redo();
+                            redo(); // Redo action
                         } else {
-                            undo();
+                            undo(); // Undo action
                         }
                         break;
                     case 'y':
-                        e.preventDefault();
-                        redo();
+                        e.preventDefault(); // Prevent default behavior
+                        redo(); // Redo action
                         break;
                     case 's':
-                        e.preventDefault();
-                        exportToImage();
+                        e.preventDefault(); // Prevent default behavior
+                        exportToImage(); // Export canvas to image
                         break;
                     case 'r':
-                        e.preventDefault();
-                        resetCanvas();
+                        e.preventDefault(); // Prevent default behavior
+                        resetCanvas(); // Reset the canvas
                         break;
                     default:
                         break;
                 }
             } else {
+                // Handle tool selection based on key press
                 switch (e.key.toLowerCase()) {
                     case 'p':
-                        setActiveTool('draw');
+                        setActiveTool('draw'); // Select draw tool
                         break;
                     case 'e':
-                        setActiveTool('erase');
+                        setActiveTool('erase'); // Select erase tool
                         break;
                     case 'r':
-                        setActiveTool('rectangle');
+                        setActiveTool('rectangle'); // Select rectangle tool
                         break;
                     case 'c':
-                        setActiveTool('circle');
+                        setActiveTool('circle'); // Select circle tool
                         break;
                     case 't':
-                        setActiveTool('text');
+                        setActiveTool('text'); // Select text tool
                         break;
                     case 'a':
-                        setActiveTool('arrow');
+                        setActiveTool('arrow'); // Select arrow tool
                         break;
                     case 'l':
-                        setActiveTool('line');
+                        setActiveTool('line'); // Select line tool
                         break;
                     case 's':
-                        setActiveTool('star');
+                        setActiveTool('star'); // Select star tool
                         break;
                     case 'g':
-                        setActiveTool('polygon');
+                        setActiveTool('polygon'); // Select polygon tool
                         break;
                     case 'm':
-                        setActiveTool('pan');
+                        setActiveTool('pan'); // Select pan tool
                         break;
                     default:
                         break;
@@ -75,12 +78,15 @@ export default function Draw({ socket, sessionInfo, onJoinSession }) {
             }
         };
 
+        // Add event listener for keydown events
         window.addEventListener('keydown', handleKeyDown);
+        // Cleanup event listener on component unmount
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
         };
     }, []);
 
+    // Check if sessionInfo is available
     if (!sessionInfo) {
         return (
             <div className="flex min-h-screen items-center justify-center bg-gray-800/10 text-blue-600">
@@ -92,7 +98,7 @@ export default function Draw({ socket, sessionInfo, onJoinSession }) {
                         Please join a session to start drawing and chatting with others.
                     </p>
                     <button
-                        onClick={onJoinSession}
+                        onClick={onJoinSession} // Function to join a session
                         className="glassmorphism-button rounded-md px-3 py-2 text-sm transition-all duration-300 hover:scale-105 hover:bg-blue-600"
                     >
                         Join Session
@@ -102,30 +108,35 @@ export default function Draw({ socket, sessionInfo, onJoinSession }) {
         );
     }
 
+    // Function to reset the canvas
     const resetCanvas = () => {
         if (canvasRef.current) {
             canvasRef.current.resetCanvas();
         }
     };
 
+    // Function to undo the last action
     const undo = () => {
         if (canvasRef.current) {
             canvasRef.current.undo();
         }
     };
 
+    // Function to redo the last undone action
     const redo = () => {
         if (canvasRef.current) {
             canvasRef.current.redo();
         }
     };
 
+    // Function to export the canvas to an image
     const exportToImage = () => {
         if (canvasRef.current) {
             canvasRef.current.exportToImage();
         }
     };
 
+    // Function to toggle the visibility of keyboard shortcuts
     const toggleShortcuts = () => {
         setShowShortcuts(!showShortcuts);
     };
@@ -147,7 +158,7 @@ export default function Draw({ socket, sessionInfo, onJoinSession }) {
                 />
                 <div className="glassmorphism flex-1 overflow-hidden rounded-lg p-2">
                     <Canvas
-                        ref={canvasRef}
+                        ref={canvasRef} // Pass ref to Canvas
                         socket={socket}
                         activeTool={activeTool}
                         color={color}
@@ -169,8 +180,8 @@ export default function Draw({ socket, sessionInfo, onJoinSession }) {
 
             {/* Keyboard Shortcuts Modal */}
             <CanvasKeyboardShortcuts
-                isOpen={showShortcuts}
-                onClose={() => setShowShortcuts(false)}
+                isOpen={showShortcuts} // Modal visibility state
+                onClose={() => setShowShortcuts(false)} // Close function
             />
         </div>
     );

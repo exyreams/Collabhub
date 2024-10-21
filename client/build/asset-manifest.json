@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.36efc8c0.css",
+    "main.js": "/static/js/main.c7f73730.js",
+    "static/media/technova.png": "/static/media/technova.a94755a9eb88d6c90e38.png",
+    "static/media/cyberdynamics.png": "/static/media/cyberdynamics.261e08b0feb8ae797982.png",
+    "static/media/innovativeai.png": "/static/media/innovativeai.0c918628054ad84de5e7.png",
+    "static/media/collabimportance.jpg": "/static/media/collabimportance.2de7c3266ca21a230728.jpg",
+    "static/media/securitypractices.jpg": "/static/media/securitypractices.60e7f9b880911c8800d7.jpg",
+    "static/media/synergysolutions.png": "/static/media/synergysolutions.d2d676263d93c836e28b.png",
+    "static/media/quantsystems.png": "/static/media/quantsystems.28eb874005bacfc5b627.png",
+    "static/media/productivity.jpg": "/static/media/productivity.077c74d20b902f0db881.jpg",
+    "static/media/nexuscorp.png": "/static/media/nexuscorp.eb5b2755599cddb22c2e.png",
+    "static/media/logo.png": "/static/media/logo.6bb6a10cc9d53d02c877.png",
+    "static/media/exyreams.png": "/static/media/exyreams.676a53b1f1530e0b44d1.png",
+    "static/media/future.jpg": "/static/media/future.da8530368ea7491350d4.jpg",
+    "static/media/jergeon.png": "/static/media/jergeon.a6523b51b5df89ce46e7.png",
+    "static/media/cleren.png": "/static/media/cleren.e7477c99aeb0369555e9.png",
+    "static/media/arxlyn.png": "/static/media/arxlyn.074a2a210fb38593e41e.png",
+    "index.html": "/index.html",
+    "main.36efc8c0.css.map": "/static/css/main.36efc8c0.css.map",
+    "main.c7f73730.js.map": "/static/js/main.c7f73730.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.36efc8c0.css",
+    "static/js/main.c7f73730.js"
+  ]
+}

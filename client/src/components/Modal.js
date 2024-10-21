@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Modal used for adding texts
 const Modal = ({ isOpen, onClose, onSubmit, children }) => {
     if (!isOpen) return null;
 

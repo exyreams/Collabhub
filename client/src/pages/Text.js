@@ -3,6 +3,7 @@ import TextEditor from '../components/TextEditor';
 import Chat from '../components/Chat';
 
 const Text = ({ socket, sessionInfo, onJoinSession }) => {
+    // Render this block if sessionInfo isn't available
     if (!sessionInfo) {
         return (
             <div className="flex min-h-screen items-center justify-center bg-gray-800/10 text-blue-600">
@@ -23,7 +24,7 @@ const Text = ({ socket, sessionInfo, onJoinSession }) => {
             </div>
         );
     }
-
+    // Render this block if sessionInfo is available
     return (
         <div className="flex h-[calc(100vh-1rem)] flex-col p-4 text-white md:flex-row">
             <div className="mb-2 flex h-full flex-col md:mb-0 md:w-[70%] md:pr-4">

@@ -1,8 +1,9 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { FaBriefcase, FaClock, FaMapMarkerAlt } from 'react-icons/fa';
+import React from 'react'; // Importing React library
+import { motion } from 'framer-motion'; // Importing motion for animations
+import { Link } from 'react-router-dom'; // Importing Link for routing
+import { FaBriefcase, FaClock, FaMapMarkerAlt } from 'react-icons/fa'; // Importing icons
 
+// Job openings data
 const jobOpenings = [
     {
         id: 1,
@@ -41,6 +42,7 @@ const jobOpenings = [
     },
 ];
 
+// List of benefits offered to employees
 const benefits = [
     'Competitive salary and equity',
     'Health, dental, and vision insurance',
@@ -60,14 +62,14 @@ export default function Careers() {
                     <div className="mx-auto max-w-7xl px-4 lg:px-8 sm:px-6">
                         <motion.div
                             className="text-center"
-                            initial={{ opacity: 0, y: -20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5 }}
+                            initial={{ opacity: 0, y: -20 }} // Initial animation state
+                            animate={{ opacity: 1, y: 0 }} // Animation to apply
+                            transition={{ duration: 0.5 }} // Duration of animation
                         >
                             <h1 className="mb-6 text-5xl font-extrabold md:text-7xl">
-                <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
-                  Join Our Team
-                </span>
+                                <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
+                                    Join Our Team
+                                </span>
                             </h1>
                             <p className="mx-auto mb-12 max-w-3xl text-xl text-gray-300 md:text-2xl">
                                 Help us shape the future of collaboration and make a meaningful
@@ -80,28 +82,28 @@ export default function Careers() {
                                 Open Positions
                             </h2>
                             <div className="grid gap-6 md:grid-cols-2">
-                                {jobOpenings.map((job, index) => (
+                                {jobOpenings.map((job, index) => ( // Mapping through job openings
                                     <motion.div
-                                        key={job.id}
+                                        key={job.id} // Unique key for each job
                                         className="glassmorphism rounded-xl p-6"
-                                        initial={{ opacity: 0, y: 50 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                                        initial={{ opacity: 0, y: 50 }} // Initial animation state for job cards
+                                        animate={{ opacity: 1, y: 0 }} // Animation to apply
+                                        transition={{ duration: 0.5, delay: index * 0.1 }} // Animation transition properties
                                     >
                                         <h3 className="mb-2 text-xl font-semibold">{job.title}</h3>
                                         <div className="mb-4 flex flex-wrap text-sm text-gray-400">
-                      <span className="mr-4 flex items-center">
-                        <FaBriefcase className="mr-1" /> {job.department}
-                      </span>
                                             <span className="mr-4 flex items-center">
-                        <FaMapMarkerAlt className="mr-1" /> {job.location}
-                      </span>
+                                                <FaBriefcase className="mr-1" /> {job.department} {/* Department icon */}
+                                            </span>
+                                            <span className="mr-4 flex items-center">
+                                                <FaMapMarkerAlt className="mr-1" /> {job.location} {/* Location icon */}
+                                            </span>
                                             <span className="flex items-center">
-                        <FaClock className="mr-1" /> {job.type}
-                      </span>
+                                                <FaClock className="mr-1" /> {job.type} {/* Job type icon */}
+                                            </span>
                                         </div>
                                         <p className="inline-block cursor-not-allowed rounded-full bg-indigo-600 px-4 py-2 text-sm font-medium transition-colors hover:bg-indigo-700">
-                                            Learn More
+                                            Learn More {/* Placeholder for learn more action */}
                                         </p>
                                     </motion.div>
                                 ))}
@@ -137,13 +139,13 @@ export default function Careers() {
                         <div className="mt-12">
                             <h3 className="mb-4 text-xl font-semibold">Benefits</h3>
                             <ul className="grid gap-2 md:grid-cols-2">
-                                {benefits.map((benefit, index) => (
+                                {benefits.map((benefit, index) => ( // Mapping through benefits
                                     <motion.li
-                                        key={index}
+                                        key={index} // Unique key for each benefit
                                         className="flex items-center"
-                                        initial={{ opacity: 0, x: -20 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                                        initial={{ opacity: 0, x: -20 }} // Initial animation state for benefits
+                                        animate={{ opacity: 1, x: 0 }} // Animation to apply
+                                        transition={{ duration: 0.5, delay: index * 0.1 }} // Animation transition properties
                                     >
                                         <svg
                                             className="mr-2 h-5 w-5 text-green-400"
@@ -154,9 +156,9 @@ export default function Careers() {
                                             viewBox="0 0 24 24"
                                             stroke="currentColor"
                                         >
-                                            <path d="M5 13l4 4L19 7" />
+                                            <path d="M5 13l4 4L19 7" /> {/* Checkmark SVG */}
                                         </svg>
-                                        {benefit}
+                                        {benefit} {/* Displaying benefit */}
                                     </motion.li>
                                 ))}
                             </ul>
@@ -175,11 +177,11 @@ export default function Careers() {
                                 passionate about our mission, we'd love to hear from you!
                             </p>
                             <motion.div
-                                whileHover={{ scale: 1.05 }}
-                                transition={{ type: 'spring', stiffness: 300 }}
+                                whileHover={{ scale: 1.05 }} // Animation on hover
+                                transition={{ type: 'spring', stiffness: 300 }} // Transition properties
                             >
                                 <Link
-                                    to="/contact"
+                                    to="/contact" // Link to contact page
                                     className="glassmorphism-button inline-block rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-12 py-4 text-lg transition-all duration-300 hover:from-blue-700 hover:to-indigo-700"
                                 >
                                     Get in Touch

@@ -21,79 +21,79 @@ import Support from './pages/Support';
 import Terms from './pages/Terms';
 import Text from './pages/Text';
 
-const socket = io('http://localhost:5000');
+const socket = io('http://localhost:5000'); // Establish socket connection
 
 const App = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [modalMode, setModalMode] = useState('join');
-    const [sessionInfo, setSessionInfo] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
+    const [modalMode, setModalMode] = useState('join'); // State for modal mode (join/create)
+    const [sessionInfo, setSessionInfo] = useState(null); // State for session info
 
     useEffect(() => {
-        const savedSessionInfo = localStorage.getItem('sessionInfo');
+        const savedSessionInfo = localStorage.getItem('sessionInfo'); // Retrieve session info from localStorage
         if (savedSessionInfo) {
             const parsedSessionInfo = JSON.parse(savedSessionInfo);
             setSessionInfo(parsedSessionInfo);
-            socket.emit('joinSession', parsedSessionInfo);
+            socket.emit('joinSession', parsedSessionInfo); // Rejoin session on load if session exists
         }
 
         socket.on('sessionJoined', ({ sessionId, initialData }) => {
             const newSessionInfo = { sessionId, ...initialData };
-            setSessionInfo(newSessionInfo);
-            localStorage.setItem('sessionInfo', JSON.stringify(newSessionInfo));
+            setSessionInfo(newSessionInfo); // Update session info on join
+            localStorage.setItem('sessionInfo', JSON.stringify(newSessionInfo)); // Save session info to localStorage
         });
 
         socket.on('sessionJoinError', (error) => {
-            alert(error);
+            alert(error); // Alert if there's a session join error
         });
 
         return () => {
-            socket.off('sessionJoined');
-            socket.off('sessionJoinError');
+            socket.off('sessionJoined'); // Cleanup on unmount
+            socket.off('sessionJoinError'); // Cleanup on unmount
         };
     }, []);
 
     const handleJoinSession = () => {
-        setModalMode('join');
-        setIsModalOpen(true);
+        setModalMode('join'); // Set modal mode to "join"
+        setIsModalOpen(true); // Open modal
     };
 
     const handleCreateSession = () => {
-        setModalMode('create');
-        setIsModalOpen(true);
+        setModalMode('create'); // Set modal mode to "create"
+        setIsModalOpen(true); // Open modal
     };
 
     const handleSessionSubmit = (data) => {
-        socket.emit(modalMode === 'join' ? 'joinSession' : 'createSession', data);
-        setIsModalOpen(false);
+        socket.emit(modalMode === 'join' ? 'joinSession' : 'createSession', data); // Emit join/create session event
+        setIsModalOpen(false); // Close modal after submitting session details
     };
 
     const handleLeaveSession = () => {
-        socket.emit('leaveSession');
-        setSessionInfo(null);
-        localStorage.removeItem('sessionInfo');
+        socket.emit('leaveSession'); // Emit leave session event
+        setSessionInfo(null); // Clear session info
+        localStorage.removeItem('sessionInfo'); // Remove session info from localStorage
     };
 
     const handleSessionDetails = () => {
-        setModalMode('details');
-        setIsModalOpen(true);
+        setModalMode('details'); // Set modal mode to "details"
+        setIsModalOpen(true); // Open modal for session details
     };
 
     return (
         <Router>
-            <ScrollToTop />
+            <ScrollToTop /> {/* Scroll to top on route change */}
             <div className="z-10 flex min-h-screen flex-col bg-gray-900 text-white">
                 <Navbar
-                    onJoinSession={handleJoinSession}
-                    onCreateSession={handleCreateSession}
-                    onSessionDetails={handleSessionDetails}
-                    onLeaveSession={handleLeaveSession}
-                    isSessionActive={!!sessionInfo}
+                    onJoinSession={handleJoinSession} // Join session handler
+                    onCreateSession={handleCreateSession} // Create session handler
+                    onSessionDetails={handleSessionDetails} // Session details handler
+                    onLeaveSession={handleLeaveSession} // Leave session handler
+                    isSessionActive={!!sessionInfo} // Determine if session is active
                 />
                 <main className="grow">
                     <Routes>
                         <Route
                             path="/"
-                            element={<Home onJoinSession={handleJoinSession} />}
+                            element={<Home onJoinSession={handleJoinSession} />} // Home page with join session action
                         />
                         <Route
                             path="/draw"
@@ -101,7 +101,7 @@ const App = () => {
                                 <Draw
                                     onJoinSession={handleJoinSession}
                                     socket={socket}
-                                    sessionInfo={sessionInfo}
+                                    sessionInfo={sessionInfo} // Pass session info to Draw page
                                 />
                             )}
                         />
@@ -111,7 +111,7 @@ const App = () => {
                                 <Code
                                     onJoinSession={handleJoinSession}
                                     socket={socket}
-                                    sessionInfo={sessionInfo}
+                                    sessionInfo={sessionInfo} // Pass session info to Code page
                                 />
                             )}
                         />
@@ -121,18 +121,18 @@ const App = () => {
                                 <Text
                                     onJoinSession={handleJoinSession}
                                     socket={socket}
-                                    sessionInfo={sessionInfo}
+                                    sessionInfo={sessionInfo} // Pass session info to Text page
                                 />
                             )}
                         />
-                        <Route path="*" element={<NotFound />} />
+                        <Route path="*" element={<NotFound />} /> {/* 404 page */}
                         <Route path="/about" element={<About />} />
                         <Route path="/blog" element={<Blog />} />
                         <Route path="/careers" element={<Careers />} />
                         <Route path="/contact" element={<Contact />} />
                         <Route
                             path="/features"
-                            element={<Features onJoinSession={handleJoinSession} />}
+                            element={<Features onJoinSession={handleJoinSession} />} // Features page with join session action
                         />
                         <Route path="/pricing" element={<Pricing />} />
                         <Route path="/privacy" element={<Privacy />} />
@@ -141,13 +141,13 @@ const App = () => {
                         <Route path="/terms" element={<Terms />} />
                     </Routes>
                 </main>
-                <Footer />
+                <Footer /> {/* Footer component */}
                 <SessionModal
-                    isOpen={isModalOpen}
-                    onClose={() => setIsModalOpen(false)}
-                    onSubmit={handleSessionSubmit}
-                    mode={modalMode}
-                    sessionDetails={sessionInfo}
+                    isOpen={isModalOpen} // Modal visibility state
+                    onClose={() => setIsModalOpen(false)} // Modal close handler
+                    onSubmit={handleSessionSubmit} // Modal submit handler
+                    mode={modalMode} // Modal mode (join/create/details)
+                    sessionDetails={sessionInfo} // Session details for modal
                 />
             </div>
         </Router>

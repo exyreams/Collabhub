@@ -6,6 +6,6 @@ import App from './App';
 const root = ReactDOM.createRoot(document.getElementById('root')); // Create a root
 root.render(
     <React.StrictMode>
-        <App />
+        <App /> // Render the App component wrapped in React.StrictMode
     </React.StrictMode>
 );

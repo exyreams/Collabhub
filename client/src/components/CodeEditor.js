@@ -32,67 +32,85 @@ const CodeEditor = ({ socket, sessionInfo }) => {
     const [typingUsers, setTypingUsers] = useState({});
 
     useEffect(() => {
+        // Ensure the socket is available
         if (!socket) return;
 
+        // Function to handle code updates from the server
         const handleUpdateCode = (data) => {
+            // Check if the editor reference is valid
             if (editorRef.current) {
-                const model = editorRef.current.getModel();
-                const currentCode = model.getValue();
+                const model = editorRef.current.getModel(); // Get the editor model
+                const currentCode = model.getValue(); // Get the current code in the editor
+
+                // If the current code differs from the incoming code, update it
                 if (currentCode !== data.code) {
-                    const position = editorRef.current.getPosition();
+                    const position = editorRef.current.getPosition(); // Get the current cursor position
                     model.pushEditOperations(
-                        [],
+                        [], // No edit operations to undo
                         [
                             {
-                                range: model.getFullModelRange(),
-                                text: data.code,
+                                range: model.getFullModelRange(), // Get the full range of the model
+                                text: data.code, // New code to insert
                             },
                         ],
-                        () => [position],
+                        () => [position], // Restore the cursor position
                     );
                 }
+
+                // Update the language if it differs from the current language
                 if (data.language !== language) {
                     setLanguage(data.language);
                 }
             }
         };
 
+        // Function to handle user typing notifications
         const handleUserTyping = ({ username, isTyping }) => {
+            // Update the typing status of users
             setTypingUsers((prev) => ({
                 ...prev,
                 [username]: isTyping,
             }));
         };
 
+        // Set up socket event listeners
         socket.on('updateCode', handleUpdateCode);
         socket.on('userTyping', handleUserTyping);
 
+        // Cleanup function to remove event listeners when component unmounts
         return () => {
             socket.off('updateCode', handleUpdateCode);
             socket.off('userTyping', handleUserTyping);
         };
-    }, [socket, language]);
+    }, [socket, language]); // Dependency array for the useEffect hook
 
+// Function to handle the editor mount event
     const handleEditorDidMount = (editor) => {
-        editorRef.current = editor;
+        editorRef.current = editor; // Store the editor reference
     };
 
+// Function to handle changes in the editor
     const handleEditorChange = (value) => {
         if (socket) {
+            // Emit the updated code and notify others that the user is typing
             socket.emit('updateCode', { code: value, language });
             socket.emit('userTyping', { isTyping: true });
 
             // Debounce the typing event
-            clearTimeout(editorRef.current.typingTimeout);
+            clearTimeout(editorRef.current.typingTimeout); // Clear any existing timeout
             editorRef.current.typingTimeout = setTimeout(() => {
+                // Notify that the user has stopped typing after a delay
                 socket.emit('userTyping', { isTyping: false });
             }, 1000);
         }
     };
 
+// Function to handle language changes in the editor
     const handleLanguageChange = (newLanguage) => {
-        setLanguage(newLanguage);
-        setIsOpen(false);
+        setLanguage(newLanguage); // Update the language state
+        setIsOpen(false); // Close any open language selection modal
+
+        // If socket is available and editor is mounted, emit the new language and current code
         if (socket && editorRef.current) {
             socket.emit('updateCode', {
                 code: editorRef.current.getValue(),
@@ -101,10 +119,12 @@ const CodeEditor = ({ socket, sessionInfo }) => {
         }
     };
 
+
     return (
         <div className="flex h-full flex-col space-y-4">
             <div className="flex items-center justify-between">
                 <div className="relative">
+                    {/*Choose Language*/}
                     <motion.button
                         onClick={() => setIsOpen(!isOpen)}
                         className="glassmorphism hover:shadow-glassmorphism-shadow w-48 px-4 py-2 transition-all duration-300 focus:border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400"
@@ -114,6 +134,8 @@ const CodeEditor = ({ socket, sessionInfo }) => {
                         {languageOptions.find((option) => option.value === language)
                             ?.label || 'Select Language'}
                     </motion.button>
+
+                    {/*Language Options*/}
                     <AnimatePresence>
                         {isOpen && (
                             <motion.ul
@@ -137,6 +159,8 @@ const CodeEditor = ({ socket, sessionInfo }) => {
                         )}
                     </AnimatePresence>
                 </div>
+
+                {/*User typing status*/}
                 <div className="flex items-center space-x-2">
                     {Object.entries(typingUsers).map(
                         ([username, isTyping]) => isTyping && (
@@ -147,6 +171,8 @@ const CodeEditor = ({ socket, sessionInfo }) => {
                     )}
                 </div>
             </div>
+
+            {/*Code Editor*/}
             <div className="relative grow overflow-hidden rounded-md">
                 <Editor
                     height="100%"

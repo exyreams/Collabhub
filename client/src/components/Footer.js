@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaFacebookF, FaGithub, FaTwitter } from 'react-icons/fa';
 import logo from '../assets/logo.png';
 
+// Footer Section code
 export default function Footer() {
     return (
         <footer className="glassmorphism mt-2 text-white">

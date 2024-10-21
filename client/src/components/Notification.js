@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { X } from 'lucide-react';
 
+// Toast Notification on top right of the webpage
 export default function Notification({ message, type, onClose }) {
     const [isVisible, setIsVisible] = useState(true);
 

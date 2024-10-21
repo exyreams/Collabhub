@@ -96,6 +96,7 @@ export default function Pricing() {
             <main className="relative">
                 <section className="py-20">
                     <div className="mx-auto max-w-7xl px-4 lg:px-8 sm:px-6">
+                        {/*Hero Section*/}
                         <motion.div
                             className="text-center"
                             initial={{ opacity: 0, y: -20 }}
@@ -103,9 +104,9 @@ export default function Pricing() {
                             transition={{ duration: 0.5 }}
                         >
                             <h1 className="mb-6 text-4xl font-extrabold lg:text-7xl md:text-6xl sm:text-5xl">
-                <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
-                  Simple Pricing for Teams of All Sizes
-                </span>
+                            <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
+                              Simple Pricing for Teams of All Sizes
+                            </span>
                             </h1>
                             <p className="mx-auto mb-12 max-w-3xl text-xl text-gray-300 md:text-2xl">
                                 Choose the plan that best fits your team's needs. All plans come
@@ -113,6 +114,7 @@ export default function Pricing() {
                             </p>
                         </motion.div>
 
+                        {/*Pricing Contents*/}
                         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 md:grid-cols-2">
                             {plans.map((plan, index) => (
                                 <motion.div
@@ -157,6 +159,7 @@ export default function Pricing() {
                     </div>
                 </section>
 
+                {/*Pricing Faq Section*/}
                 <section className="py-20">
                     <div className="mx-auto max-w-7xl px-4 lg:px-8 sm:px-6">
                         <h2 className="mb-8 bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-center text-4xl font-extrabold text-transparent">
