@@ -2,6 +2,7 @@
 
 CollabHub is a powerful, full-stack web application designed to redefine real-time collaboration for teams. Built with React (front-end) and a Node.js/Socket.IO server (back-end), CollabHub allows users to seamlessly work together on projects involving **live drawing, live coding, and rich text editing** – all within a single, intuitive platform.  Forget the frustration of juggling multiple tools and experiencing communication delays. CollabHub streamlines your workflow, boosting productivity and fostering creativity.
 
+> Warning: Only the Frontend is Deployed to Vercel.
 
 ##  Three Powerful Apps in One Platform
 
