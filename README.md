@@ -2,7 +2,8 @@
 
 CollabHub is a powerful, full-stack web application designed to redefine real-time collaboration for teams. Built with React (front-end) and a Node.js/Socket.IO server (back-end), CollabHub allows users to seamlessly work together on projects involving **live drawing, live coding, and rich text editing** – all within a single, intuitive platform.  Forget the frustration of juggling multiple tools and experiencing communication delays. CollabHub streamlines your workflow, boosting productivity and fostering creativity.
 
-> Warning: Only the Frontend is Deployed to Vercel.
+> [!IMPORTANT]
+> ### Frontend is only hosted, run application locally to use its features..
 
 ##  Three Powerful Apps in One Platform
 
@@ -10,7 +11,8 @@ CollabHub's strength lies in its integrated approach to real-time collaboration,
 
 
 **1. Live Drawing:** A collaborative digital whiteboard perfect for brainstorming, design reviews, and remote team meetings.  Users can draw freely, add various shapes (rectangles, circles, arrows, stars, polygons), and utilize an eraser, all synchronized in real-time. The ability to undo and redo actions and export the finished product as an image enhances usability.  Forget emailing image iterations back and forth; see your design evolve organically as a team.
-> Warning: There might be some Issues, on Live Drawing as its not Optimized.
+> [!CAUTION]
+> ### Please be advised that there are performance issues with the Live Drawing tools, and certain features may cause the application to become unstable or crash.
 
 **Demo:**
 
